@@ -285,6 +285,11 @@
       transition: color 0.2s ease;
     }
 
+    .inner-card img.card-icon {
+      object-fit: contain;
+      color: unset;
+    }
+
     .inner-card:hover .card-icon {
       color: var(--branco);
     }
@@ -395,12 +400,12 @@
             {
               id: 'bradesco',
               label: 'Bradesco',
-              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>',
+              icon: '<img class="card-icon" src="images/bradesco.png" alt="Bradesco">',
               links: [
                 {
                   name: 'Contrato de Crédito',
                   href: 'http://www4.sbkbpo.com.br/bradescoCC/Login.aspx?ReturnUrl=%2fbradescocc%2f',
-                  icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>'
+                  icon: '<img class="card-icon" src="images/bradesco.png" alt="Bradesco">'
                 },
                 {
                   name: 'Ofícios Bradesco',
