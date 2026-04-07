@@ -125,66 +125,143 @@
     main {
       flex: 1;
       overflow: hidden;
-      padding: 12px 20px 12px;
+      padding: 14px 20px;
       display: flex;
       flex-direction: column;
       min-height: 0;
     }
 
-    /* ── GROUPS GRID ── */
-    .groups-grid {
+    /* ── VIEW SWITCHING ── */
+    .view {
+      display: none;
+      flex: 1;
+      min-height: 0;
+      flex-direction: column;
+    }
+
+    .view.active {
+      display: flex;
+    }
+
+    /* ── HOME GRID (3×2) ── */
+    .home-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       flex: 1;
       min-height: 0;
     }
 
-    /* ── GROUP CARD ── */
-    .group-card {
+    /* ── GROUP BUTTON ── */
+    .group-btn {
       background: var(--branco);
-      border-radius: 10px;
+      border: 1.5px solid transparent;
+      border-radius: 12px;
       box-shadow: var(--sombra);
-      padding: 12px;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      min-height: 0;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      padding: 16px;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+      font-family: 'Inter', sans-serif;
     }
 
-    .group-title {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      color: var(--verde-medio);
-      margin-bottom: 8px;
-      padding-bottom: 6px;
-      border-bottom: 1.5px solid rgba(10,74,58,0.12);
+    .group-btn:hover {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-2px);
+      border-color: var(--verde-menta);
+    }
+
+    .group-btn .btn-icon {
+      width: 36px;
+      height: 36px;
+      color: var(--verde-menta);
+      transition: color 0.2s ease;
       flex-shrink: 0;
     }
 
-    /* ── INNER CARD GRID ── */
-    .inner-grid {
+    .group-btn:hover .btn-icon {
+      color: var(--branco);
+    }
+
+    .group-btn .btn-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--texto);
+      transition: color 0.2s ease;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .group-btn:hover .btn-label {
+      color: var(--branco);
+    }
+
+    /* ── GROUP DETAIL VIEW ── */
+    .group-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+      flex-shrink: 0;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--verde-escuro);
+      color: var(--branco);
+      border: none;
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .back-btn:hover {
+      background: var(--verde-medio);
+    }
+
+    .group-screen-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+    }
+
+    /* ── LINKS GRID (detail screen) ── */
+    .links-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-      gap: 7px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
       align-content: start;
       flex: 1;
       min-height: 0;
     }
 
-    /* ── INNER CARD ── */
+    /* ── INNER CARD (link tile) ── */
     .inner-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 5px;
-      padding: 10px 6px;
-      background: var(--fundo);
-      border-radius: 7px;
+      gap: 8px;
+      padding: 20px 12px;
+      background: var(--branco);
+      border-radius: 8px;
+      box-shadow: var(--sombra);
       text-decoration: none;
       color: var(--texto);
       transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
@@ -201,8 +278,8 @@
     }
 
     .inner-card .card-icon {
-      width: 26px;
-      height: 26px;
+      width: 32px;
+      height: 32px;
       color: var(--verde-menta);
       flex-shrink: 0;
       transition: color 0.2s ease;
@@ -213,7 +290,7 @@
     }
 
     .inner-card .card-name {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 600;
       text-align: center;
       line-height: 1.3;
@@ -250,209 +327,205 @@
 
   <!-- ── MAIN CONTENT ── -->
   <main>
-    <div class="groups-grid">
 
-      <!-- OPERACIONAL -->
-      <div class="group-card">
-        <h2 class="group-title">Operacional</h2>
-        <div class="inner-grid">
-
-          <a href="https://192.168.254.230:5002/" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
-            </svg>
-            <span class="card-name">Ofícios</span>
-          </a>
-
-          <a href="http://192.168.24.70:3000/" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/>
-              <rect x="17" y="3" width="4" height="18"/>
-              <polyline points="3 3 9 9 15 5 21 11"/>
-            </svg>
-            <span class="card-name">Dash Operações</span>
-          </a>
-
-          <a href="http://192.168.24.70:3006/" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
-              <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
-            </svg>
-            <span class="card-name">Monitoramento RPA</span>
-          </a>
-
-          <a href="http://192.168.254.224:5002/login" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
-              <rect x="9" y="3" width="6" height="4" rx="1"/>
-              <path d="M9 12l2 2 4-4"/>
-            </svg>
-            <span class="card-name">Laudos AGI</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- BRADESCO -->
-      <div class="group-card">
-        <h2 class="group-title">Bradesco</h2>
-        <div class="inner-grid">
-
-          <a href="http://www4.sbkbpo.com.br/bradescoCC/Login.aspx?ReturnUrl=%2fbradescocc%2f" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="5" width="20" height="14" rx="2"/>
-              <line x1="2" y1="10" x2="22" y2="10"/>
-              <path d="M6 15h2m4 0h6"/>
-            </svg>
-            <span class="card-name">Contrato de Crédito</span>
-          </a>
-
-          <a href="https://www5.sbkbpo.com.br/BradescoOficios/Account/Login?ReturnUrl=%2FBradescoOficios%2FAccount%3FisAutenticado%3DFalse%26urlPretendida%3D%252Fbradescooficios" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="8" y1="13" x2="16" y2="13"/>
-              <line x1="8" y1="17" x2="16" y2="17"/>
-              <polyline points="8 9 9 9 10 9"/>
-            </svg>
-            <span class="card-name">Ofícios Bradesco</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- FINANCEIRO E SISTEMAS -->
-      <div class="group-card">
-        <h2 class="group-title">Financeiro e Sistemas</h2>
-        <div class="inner-grid">
-
-          <a href="http://ax.sbkbs.com.br/SBKPortalAX.NetEnvironment/gamloginsbk.aspx" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-            <span class="card-name">AX</span>
-          </a>
-
-          <a href="http://ax.sbkbs.com.br/SBKPortalAX.NetEnvironment/gamloginsbk.aspx" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"/>
-              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-            </svg>
-            <span class="card-name">Despesas</span>
-          </a>
-
-          <a href="https://sistemas.sbkbpo.com.br/JDoc/faces/login.jsf" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-            <span class="card-name">Manager</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- COMUNICAÇÃO E GESTÃO -->
-      <div class="group-card">
-        <h2 class="group-title">Comunicação e Gestão</h2>
-        <div class="inner-grid">
-
-          <a href="https://outlook.office.com" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <span class="card-name">Outlook</span>
-          </a>
-
-          <a href="https://app.clickup.com/90132985812/inbox?tab=primary" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="9 11 12 14 22 4"/>
-              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-            </svg>
-            <span class="card-name">ClickUp</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- SITES -->
-      <div class="group-card">
-        <h2 class="group-title">Sites</h2>
-        <div class="inner-grid">
-
-          <a href="https://lumia.sbk.com.br/login" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 8v4l3 3"/>
-              <path d="M2 12h2M20 12h2M12 2v2M12 20v2"/>
-            </svg>
-            <span class="card-name">Site Lum.IA</span>
-          </a>
-
-          <a href="https://www.sbk.com.br/" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-            </svg>
-            <span class="card-name">Site Institucional</span>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- CANAIS -->
-      <div class="group-card">
-        <h2 class="group-title">Canais</h2>
-        <div class="inner-grid">
-
-          <a href="#" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-            <span class="card-name">Canal de Denúncia</span>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener noreferrer" class="inner-card">
-            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-            </svg>
-            <span class="card-name">Canal de RH</span>
-          </a>
-
-        </div>
-      </div>
-
+    <!-- HOME VIEW -->
+    <div id="view-home" class="view active">
+      <div class="home-grid" id="home-grid"></div>
     </div>
+
+    <!-- GROUP DETAIL VIEW -->
+    <div id="view-group" class="view">
+      <div class="group-header">
+        <button id="btn-back" class="back-btn" aria-label="Voltar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+          </svg>
+          Voltar
+        </button>
+        <h2 id="group-title" class="group-screen-title"></h2>
+      </div>
+      <div id="group-links" class="links-grid"></div>
+    </div>
+
   </main>
 
   <script>
     (function () {
-      function update() {
+
+      /* ── DATE ── */
+      function updateDate() {
         var now = new Date();
-        var options = {
-          weekday: 'long',
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        };
+        var options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         var dateStr = now.toLocaleDateString('pt-BR', options);
         dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
         document.getElementById('current-date').textContent = dateStr;
       }
+      updateDate();
+      setInterval(updateDate, 60000);
 
-      update();
-      setInterval(update, 60000);
+      /* ── DATA ── */
+      var GROUPS = [
+        {
+          id: 'operacional',
+          label: 'Operacional',
+          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
+          links: [
+            {
+              name: 'Ofícios',
+              href: 'https://192.168.254.230:5002/',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>'
+            },
+            {
+              name: 'Dash Operações',
+              href: 'http://192.168.24.70:3000/',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/><polyline points="3 3 9 9 15 5 21 11"/></svg>'
+            },
+            {
+              name: 'Monitoramento RPA',
+              href: 'http://192.168.24.70:3006/',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>'
+            },
+            {
+              name: 'Laudos AGI',
+              href: 'http://192.168.254.224:5002/login',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg>'
+            }
+          ]
+        },
+        {
+          id: 'bradesco',
+          label: 'Bradesco',
+          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>',
+          links: [
+            {
+              name: 'Contrato de Crédito',
+              href: 'http://www4.sbkbpo.com.br/bradescoCC/Login.aspx?ReturnUrl=%2fbradescocc%2f',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>'
+            },
+            {
+              name: 'Ofícios Bradesco',
+              href: 'https://www5.sbkbpo.com.br/BradescoOficios/Account/Login?ReturnUrl=%2FBradescoOficios%2FAccount%3FisAutenticado%3DFalse%26urlPretendida%3D%252Fbradescooficios',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="8 9 9 9 10 9"/></svg>'
+            }
+          ]
+        },
+        {
+          id: 'financeiro',
+          label: 'Financeiro e Sistemas',
+          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>',
+          links: [
+            {
+              name: 'AX',
+              href: 'http://ax.sbkbs.com.br/SBKPortalAX.NetEnvironment/gamloginsbk.aspx',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>'
+            },
+            {
+              name: 'Despesas',
+              href: 'http://ax.sbkbs.com.br/SBKPortalAX.NetEnvironment/gamloginsbk.aspx',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>'
+            },
+            {
+              name: 'Manager',
+              href: 'https://sistemas.sbkbpo.com.br/JDoc/faces/login.jsf',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>'
+            }
+          ]
+        },
+        {
+          id: 'comunicacao',
+          label: 'Comunicação e Gestão',
+          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+          links: [
+            {
+              name: 'Outlook',
+              href: 'https://outlook.office.com',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>'
+            },
+            {
+              name: 'ClickUp',
+              href: 'https://app.clickup.com/90132985812/inbox?tab=primary',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>'
+            }
+          ]
+        },
+        {
+          id: 'sites',
+          label: 'Sites',
+          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>',
+          links: [
+            {
+              name: 'Site Lum.IA',
+              href: 'https://lumia.sbk.com.br/login',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/><path d="M2 12h2M20 12h2M12 2v2M12 20v2"/></svg>'
+            },
+            {
+              name: 'Site Institucional',
+              href: 'https://www.sbk.com.br/',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>'
+            }
+          ]
+        },
+        {
+          id: 'canais',
+          label: 'Canais',
+          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>',
+          links: [
+            {
+              name: 'Canal de Denúncia',
+              href: '#',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+            },
+            {
+              name: 'Canal de RH',
+              href: '#',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>'
+            }
+          ]
+        }
+      ];
+
+      /* ── NAVIGATION ── */
+      function renderHomeGrid() {
+        var grid = document.getElementById('home-grid');
+        GROUPS.forEach(function (group) {
+          var btn = document.createElement('button');
+          btn.className = 'group-btn';
+          btn.setAttribute('data-group', group.id);
+          btn.innerHTML = group.icon + '<span class="btn-label">' + group.label + '</span>';
+          btn.addEventListener('click', function () { showGroup(group.id); });
+          grid.appendChild(btn);
+        });
+      }
+
+      function showGroup(groupId) {
+        var group = GROUPS.find(function (g) { return g.id === groupId; });
+        document.getElementById('group-title').textContent = group.label;
+
+        var container = document.getElementById('group-links');
+        container.innerHTML = '';
+        group.links.forEach(function (link) {
+          var a = document.createElement('a');
+          a.className = 'inner-card';
+          a.href = link.href;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML = link.icon + '<span class="card-name">' + link.name + '</span>';
+          container.appendChild(a);
+        });
+
+        document.getElementById('view-home').classList.remove('active');
+        document.getElementById('view-group').classList.add('active');
+      }
+
+      function showHome() {
+        document.getElementById('view-group').classList.remove('active');
+        document.getElementById('view-home').classList.add('active');
+      }
+
+      document.getElementById('btn-back').addEventListener('click', showHome);
+
+      renderHomeGrid();
+
     })();
   </script>
 
