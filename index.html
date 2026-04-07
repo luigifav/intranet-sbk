@@ -71,12 +71,6 @@
       gap: 2px;
     }
 
-    .greeting {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--verde-menta);
-    }
-
     .current-date {
       font-size: 12px;
       font-weight: 400;
@@ -217,9 +211,6 @@
       .logo-text {
         font-size: 18px;
       }
-      .greeting {
-        font-size: 13px;
-      }
       .current-date {
         font-size: 11px;
       }
@@ -243,20 +234,8 @@
   <header>
     <div class="logo">
       <span class="logo-text">SBK</span>
-      <!-- SBK icon: 3 ascending blade/fin shapes fanning upward from a common base -->
-      <svg width="40" height="32" viewBox="0 0 44 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <!-- Left blade: leans most to the left, shortest -->
-        <path d="M8 32 L15 32 L6 4 Z" fill="white"/>
-        <!-- Middle blade: slight left lean, medium height -->
-        <path d="M18 32 L24 32 L20 1 Z" fill="white"/>
-        <!-- Right blade: nearly vertical, tallest -->
-        <path d="M27 32 L33 32 L31 0 Z" fill="white"/>
-        <!-- Base bar -->
-        <rect x="6" y="32.5" width="29" height="2.5" rx="0.5" fill="white"/>
-      </svg>
     </div>
     <div class="header-right">
-      <span class="greeting" id="greeting">Bom dia</span>
       <span class="current-date" id="current-date"></span>
     </div>
   </header>
@@ -264,7 +243,6 @@
   <!-- ── SERVICE DESK BANNER ── -->
   <div class="service-desk-banner">
     <a href="https://servicedesk.sbk.com.br/" target="_blank" rel="noopener noreferrer" class="service-desk-link">
-      <!-- Headset icon -->
       <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:#3DB896;width:32px;height:32px;">
         <path d="M3 18v-6a9 9 0 0118 0v6"/>
         <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
@@ -424,14 +402,8 @@
 
   <script>
     (function () {
-      function pad(n) { return n < 10 ? '0' + n : n; }
-
       function update() {
         var now = new Date();
-        var hour = now.getHours();
-        var greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
-        document.getElementById('greeting').textContent = greeting;
-
         var options = {
           weekday: 'long',
           day: 'numeric',
@@ -439,13 +411,11 @@
           year: 'numeric'
         };
         var dateStr = now.toLocaleDateString('pt-BR', options);
-        // Capitalise first letter
         dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
         document.getElementById('current-date').textContent = dateStr;
       }
 
       update();
-      // Refresh every minute so greeting updates at the boundary
       setInterval(update, 60000);
     })();
   <\/script>
