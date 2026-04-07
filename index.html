@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SBK Intranet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --verde-escuro: #0A4A3A;
+      --verde-medio: #1A7A5E;
+      --verde-menta: #3DB896;
+      --fundo: #EAECEA;
+      --texto: #111111;
+      --branco: #ffffff;
+      --sombra: 0 2px 8px rgba(10,74,58,0.10);
+      --sombra-hover: 0 6px 20px rgba(10,74,58,0.18);
+    }
+
+    html {
+      font-family: 'Inter', sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      scroll-behavior: smooth;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: var(--verde-escuro);
+      color: var(--branco);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--branco);
+    }
+
+    .logo-text {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--branco);
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .greeting {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--verde-menta);
+    }
+
+    .current-date {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      text-transform: capitalize;
+    }
+
+    /* ── SERVICE DESK BANNER ── */
+    .service-desk-banner {
+      margin-top: 64px;
+      background: var(--verde-escuro);
+      padding: 0 32px;
+    }
+
+    .service-desk-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 18px 0;
+      text-decoration: none;
+      color: var(--branco);
+      transition: background 0.2s ease;
+      border-bottom: 3px solid var(--verde-menta);
+    }
+
+    .service-desk-link:hover {
+      background: var(--verde-medio);
+    }
+
+    .sd-label {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sd-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--branco);
+    }
+
+    .sd-subtitle {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .sd-arrow {
+      margin-left: 8px;
+      opacity: 0.7;
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 24px 60px;
+    }
+
+    /* ── CATEGORY SECTION ── */
+    .category {
+      margin-bottom: 36px;
+    }
+
+    .category-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--verde-medio);
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid rgba(10,74,58,0.12);
+    }
+
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 14px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px 16px;
+      background: var(--branco);
+      border-radius: 8px;
+      box-shadow: var(--sombra);
+      text-decoration: none;
+      color: var(--texto);
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      min-height: 130px;
+    }
+
+    .card:hover {
+      background: var(--verde-escuro);
+      color: var(--branco);
+      box-shadow: var(--sombra-hover);
+      transform: translateY(-2px);
+      border-color: var(--verde-menta);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      color: var(--verde-menta);
+      transition: color 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .card:hover .card-icon {
+      color: var(--branco);
+    }
+
+    .card-name {
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      transition: color 0.2s ease;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header {
+        padding: 0 16px;
+        height: 56px;
+      }
+      .logo-text {
+        font-size: 18px;
+      }
+      .greeting {
+        font-size: 13px;
+      }
+      .current-date {
+        font-size: 11px;
+      }
+      .service-desk-banner {
+        padding: 0 16px;
+        margin-top: 56px;
+      }
+      main {
+        padding: 24px 16px 48px;
+      }
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header>
+    <div class="logo">
+      <!-- SBK Logo: geometric ascending blade/leaf symbol -->
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Left blade: angular ascending shape leaning right -->
+        <path d="M8 30 L13 8 L17 14 L11 30 Z" fill="#3DB896"/>
+        <!-- Right blade: angular ascending shape leaning further right, taller -->
+        <path d="M15 30 L22 4 L27 12 L20 30 Z" fill="#ffffff" opacity="0.85"/>
+        <!-- Small accent triangle at top of right blade -->
+        <path d="M22 4 L27 12 L24.5 10 Z" fill="#3DB896"/>
+      </svg>
+      <span class="logo-text">SBK</span>
+    </div>
+    <div class="header-right">
+      <span class="greeting" id="greeting">Bom dia</span>
+      <span class="current-date" id="current-date"></span>
+    </div>
+  </header>
+
+  <!-- ── SERVICE DESK BANNER ── -->
+  <div class="service-desk-banner">
+    <a href="https://servicedesk.sbk.com.br/" target="_blank" rel="noopener noreferrer" class="service-desk-link">
+      <!-- Headset icon -->
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:#3DB896;width:32px;height:32px;">
+        <path d="M3 18v-6a9 9 0 0118 0v6"/>
+        <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+      </svg>
+      <div class="sd-label">
+        <span class="sd-title">Service Desk</span>
+        <span class="sd-subtitle">Abertura e acompanhamento de chamados</span>
+      </div>
+      <svg class="sd-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3DB896" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main>
+
+    <!-- OPERACIONAL -->
+    <section class="category">
+      <h2 class="category-title">Operacional</h2>
+      <div class="card-grid">
+
+        <a href="https://192.168.254.230:5002/" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+          <span class="card-name">Ofícios</span>
+        </a>
+
+        <a href="http://192.168.24.70:3000/" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/>
+            <rect x="17" y="3" width="4" height="18"/>
+            <polyline points="3 3 9 9 15 5 21 11"/>
+          </svg>
+          <span class="card-name">Dash Operações</span>
+        </a>
+
+        <a href="http://192.168.24.70:3006/" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
+            <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
+          </svg>
+          <span class="card-name">Monitoramento RPA</span>
+        </a>
+
+        <a href="http://192.168.254.224:5002/login" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <span class="card-name">Laudos AGI</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- BRADESCO -->
+    <section class="category">
+      <h2 class="category-title">Bradesco</h2>
+      <div class="card-grid">
+
+        <a href="http://www4.sbkbpo.com.br/bradescoCC/Login.aspx?ReturnUrl=%2fbradescocc%2f" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="2"/>
+            <line x1="2" y1="10" x2="22" y2="10"/>
+            <path d="M6 15h2m4 0h6"/>
+          </svg>
+          <span class="card-name">Contrato de Crédito</span>
+        </a>
+
+        <a href="https://www5.sbkbpo.com.br/BradescoOficios/Account/Login?ReturnUrl=%2FBradescoOficios%2FAccount%3FisAutenticado%3DFalse%26urlPretendida%3D%252Fbradescooficios" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="16" y2="17"/>
+            <polyline points="8 9 9 9 10 9"/>
+          </svg>
+          <span class="card-name">Ofícios Bradesco</span>
+        </a>
+
+        <a href="http://www4.sbkbpo.com.br/BradescoPC/Login.aspx?ReturnUrl=%2fbradescopc%2f" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+          <span class="card-name">Pacote Bradesco</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- FINANCEIRO E SISTEMAS -->
+    <section class="category">
+      <h2 class="category-title">Financeiro e Sistemas</h2>
+      <div class="card-grid">
+
+        <a href="http://ax.sbkbs.com.br/SBKPortalAX.NetEnvironment/gamloginsbk.aspx" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+          <span class="card-name">AX</span>
+        </a>
+
+        <a href="http://ax.sbkbs.com.br/SBKPortalAX.NetEnvironment/gamloginsbk.aspx" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+          <span class="card-name">Despesas</span>
+        </a>
+
+        <a href="https://sistemas.sbkbpo.com.br/JDoc/faces/login.jsf" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span class="card-name">Manager</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- COMUNICAÇÃO E GESTÃO -->
+    <section class="category">
+      <h2 class="category-title">Comunicação e Gestão</h2>
+      <div class="card-grid">
+
+        <a href="https://outlook.office.com" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span class="card-name">Outlook</span>
+        </a>
+
+        <a href="https://app.clickup.com/90132985812/inbox?tab=primary" target="_blank" rel="noopener noreferrer" class="card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+          <span class="card-name">ClickUp</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      function pad(n) { return n < 10 ? '0' + n : n; }
+
+      function update() {
+        var now = new Date();
+        var hour = now.getHours();
+        var greeting = hour < 12 ? 'Bom dia' : hour < 18 ? 'Boa tarde' : 'Boa noite';
+        document.getElementById('greeting').textContent = greeting;
+
+        var options = {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        };
+        var dateStr = now.toLocaleDateString('pt-BR', options);
+        // Capitalise first letter
+        dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+        document.getElementById('current-date').textContent = dateStr;
+      }
+
+      update();
+      // Refresh every minute so greeting updates at the boundary
+      setInterval(update, 60000);
+    })();
+  <\/script>
+
+</body>
+</html>
