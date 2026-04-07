@@ -390,22 +390,24 @@
               href: 'http://192.168.254.224:5002/login',
               icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg>'
             }
-          ]
-        },
-        {
-          id: 'bradesco',
-          label: 'Bradesco',
-          icon: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>',
-          links: [
+          ],
+          subgroups: [
             {
-              name: 'Contrato de Crédito',
-              href: 'http://www4.sbkbpo.com.br/bradescoCC/Login.aspx?ReturnUrl=%2fbradescocc%2f',
-              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>'
-            },
-            {
-              name: 'Ofícios Bradesco',
-              href: 'https://www5.sbkbpo.com.br/BradescoOficios/Account/Login?ReturnUrl=%2FBradescoOficios%2FAccount%3FisAutenticado%3DFalse%26urlPretendida%3D%252Fbradescooficios',
-              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="8 9 9 9 10 9"/></svg>'
+              id: 'bradesco',
+              label: 'Bradesco',
+              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>',
+              links: [
+                {
+                  name: 'Contrato de Crédito',
+                  href: 'http://www4.sbkbpo.com.br/bradescoCC/Login.aspx?ReturnUrl=%2fbradescocc%2f',
+                  icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><path d="M6 15h2m4 0h6"/></svg>'
+                },
+                {
+                  name: 'Ofícios Bradesco',
+                  href: 'https://www5.sbkbpo.com.br/BradescoOficios/Account/Login?ReturnUrl=%2FBradescoOficios%2FAccount%3FisAutenticado%3DFalse%26urlPretendida%3D%252Fbradescooficios',
+                  icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/><polyline points="8 9 9 9 10 9"/></svg>'
+                }
+              ]
             }
           ]
         },
@@ -513,8 +515,39 @@
           container.appendChild(a);
         });
 
+        if (group.subgroups) {
+          group.subgroups.forEach(function (sub) {
+            var btn = document.createElement('button');
+            btn.className = 'inner-card';
+            btn.innerHTML = sub.icon + '<span class="card-name">' + sub.label + '</span>';
+            btn.addEventListener('click', function () { showSubGroup(group.id, sub.id); });
+            container.appendChild(btn);
+          });
+        }
+
+        document.getElementById('btn-back').onclick = showHome;
         document.getElementById('view-home').classList.remove('active');
         document.getElementById('view-group').classList.add('active');
+      }
+
+      function showSubGroup(parentGroupId, subgroupId) {
+        var group = GROUPS.find(function (g) { return g.id === parentGroupId; });
+        var sub = group.subgroups.find(function (s) { return s.id === subgroupId; });
+        document.getElementById('group-title').textContent = sub.label;
+
+        var container = document.getElementById('group-links');
+        container.innerHTML = '';
+        sub.links.forEach(function (link) {
+          var a = document.createElement('a');
+          a.className = 'inner-card';
+          a.href = link.href;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.innerHTML = link.icon + '<span class="card-name">' + link.name + '</span>';
+          container.appendChild(a);
+        });
+
+        document.getElementById('btn-back').onclick = function () { showGroup(parentGroupId); };
       }
 
       function showHome() {
@@ -522,7 +555,7 @@
         document.getElementById('view-home').classList.add('active');
       }
 
-      document.getElementById('btn-back').addEventListener('click', showHome);
+      document.getElementById('btn-back').onclick = showHome;
 
       renderHomeGrid();
 
