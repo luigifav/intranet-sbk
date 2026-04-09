@@ -18,7 +18,7 @@
       --verde-escuro: #0A4A3A;
       --verde-medio: #1A7A5E;
       --verde-menta: #3DB896;
-      --fundo: #E5E7E5;
+      --fundo: #EBEDEB;
       --texto: #111111;
       --branco: #ffffff;
       --sombra: 0 2px 8px rgba(10,74,58,0.10);
@@ -58,7 +58,7 @@
       flex-direction: column;
       min-height: 100%;
       background-color: var(--fundo);
-      background-image: radial-gradient(circle, rgba(10,74,58,0.06) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(10,74,58,0.09) 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
@@ -67,12 +67,13 @@
       flex-shrink: 0;
       background: var(--verde-escuro);
       color: var(--branco);
-      height: 52px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+      border-bottom: 2px solid var(--verde-menta);
       z-index: 100;
       position: relative;
     }
@@ -92,6 +93,20 @@
       color: var(--branco);
     }
 
+    .logo-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .logo-subtitle {
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
     .current-date {
       font-size: 11px;
       font-weight: 400;
@@ -102,10 +117,8 @@
     /* ── SERVICE DESK BANNER ── */
     .service-desk-banner {
       flex-shrink: 0;
-      background: var(--branco);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0 28px;
-      box-shadow: 0 1px 0 rgba(10,74,58,0.06);
+      background: transparent;
+      padding: 14px 20px 2px;
     }
 
     .service-desk-link {
@@ -113,17 +126,22 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 9px 16px;
+      padding: 11px 16px;
       text-decoration: none;
       color: var(--verde-escuro);
-      transition: background 0.2s ease;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
       max-width: 860px;
       margin: 0 auto;
-      border-radius: 6px;
+      border-radius: 10px;
+      background: var(--branco);
+      border: 1.5px solid var(--border-subtle);
+      border-left: 3px solid var(--verde-menta);
+      box-shadow: var(--shadow-card);
     }
 
     .service-desk-link:hover {
-      background: rgba(61,184,150,0.08);
+      background: rgba(61,184,150,0.06);
+      box-shadow: var(--shadow-card-hover);
     }
 
     .sd-icon-wrap {
@@ -211,7 +229,7 @@
     .greeting-section {
       width: 100%;
       max-width: 860px;
-      padding: 28px 0 18px;
+      padding: 36px 0 24px;
     }
 
     .greeting-inner {
@@ -223,10 +241,10 @@
     }
 
     .greeting-text {
-      font-size: 22px;
+      font-size: 28px;
       font-weight: 700;
       color: var(--verde-escuro);
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
     }
 
     .greeting-date {
@@ -234,6 +252,21 @@
       font-weight: 400;
       color: rgba(10,74,58,0.55);
       text-transform: capitalize;
+    }
+
+    .greeting-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(10,74,58,0.55);
+      margin-top: 4px;
+    }
+
+    .greeting-divider {
+      width: 40px;
+      height: 3px;
+      background: var(--verde-menta);
+      border-radius: 2px;
+      margin-top: 16px;
     }
 
     /* ── HOME GRID (3×2) ── */
@@ -260,11 +293,28 @@
       padding: 20px 20px 16px;
       transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
       font-family: 'Inter', sans-serif;
-      min-height: 120px;
+      min-height: 140px;
       text-align: left;
       position: relative;
       overflow: hidden;
     }
+
+    /* Faixa colorida no topo por categoria */
+    .group-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--radius-card) var(--radius-card) 0 0;
+      transition: opacity 0.2s ease;
+    }
+    .group-btn[data-group="operacional"]::before { background: var(--ico-operacional); }
+    .group-btn[data-group="financeiro"]::before  { background: var(--ico-financeiro); }
+    .group-btn[data-group="comunicacao"]::before { background: var(--ico-comunicacao); }
+    .group-btn[data-group="sites"]::before       { background: var(--ico-sites); }
+    .group-btn[data-group="canais"]::before      { background: var(--ico-canais); }
+    .group-btn[data-group="treinamento"]::before { background: var(--ico-treinamento); }
+    .group-btn:hover::before { opacity: 0; }
 
     /* Tint de fundo por categoria */
     .group-btn[data-group="operacional"]  { background: var(--acc-operacional); }
@@ -290,16 +340,32 @@
       border-color: var(--verde-menta);
     }
 
+    .btn-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.70);
+      margin-bottom: 12px;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+
+    .group-btn:hover .btn-icon-wrap {
+      background: rgba(255,255,255,0.12);
+    }
+
     .group-btn .btn-icon {
-      width: 32px;
-      height: 32px;
+      width: 22px;
+      height: 22px;
       transition: color 0.2s ease;
       flex-shrink: 0;
-      margin-bottom: 12px;
     }
 
     .group-btn:hover .btn-icon {
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.85);
     }
 
     .btn-footer {
@@ -409,6 +475,8 @@
       letter-spacing: -0.01em;
       margin-bottom: 20px;
       flex-shrink: 0;
+      padding-left: 12px;
+      border-left: 3px solid var(--verde-menta);
     }
 
     /* ── LINKS GRID (detail screen) ── */
@@ -469,6 +537,19 @@
       line-height: 1.3;
       transition: color 0.2s ease;
     }
+
+    /* ── FOOTER ── */
+    footer {
+      flex-shrink: 0;
+      background: var(--verde-escuro);
+      color: rgba(255,255,255,0.40);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 400;
+      padding: 14px 28px;
+      letter-spacing: 0.03em;
+      border-top: 1px solid rgba(61,184,150,0.25);
+    }
   </style>
 </head>
 <body>
@@ -476,7 +557,10 @@
   <!-- ── HEADER ── -->
   <header>
     <div class="logo">
-      <span class="logo-text">SBK</span>
+      <div class="logo-brand">
+        <span class="logo-text">SBK</span>
+        <span class="logo-subtitle">Intranet</span>
+      </div>
     </div>
     <span class="current-date" id="current-date"></span>
   </header>
@@ -513,6 +597,8 @@
           <p class="greeting-text" id="greeting-text"></p>
           <p class="greeting-date" id="greeting-date"></p>
         </div>
+        <p class="greeting-subtitle">Acesse os sistemas e ferramentas da sua equipe</p>
+        <div class="greeting-divider"></div>
       </div>
 
       <!-- GRID DE CATEGORIAS -->
@@ -547,6 +633,11 @@
     </div>
 
   </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <span>SBK &copy; 2025 &middot; Todos os direitos reservados</span>
+  </footer>
 
   <script>
     (function () {
@@ -729,7 +820,7 @@
           btn.className = 'group-btn';
           btn.setAttribute('data-group', group.id);
           btn.innerHTML =
-            group.icon +
+            '<div class="btn-icon-wrap">' + group.icon + '</div>' +
             '<div class="btn-footer">' +
               '<span class="btn-label">' + group.label + '</span>' +
               '<span class="btn-count">' + countLabel + '</span>' +
