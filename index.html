@@ -6,7 +6,7 @@
   <title>SBK Intranet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -15,65 +15,68 @@
     }
 
     :root {
-      --verde-escuro: #0A4A3A;
-      --verde-medio: #1A7A5E;
-      --verde-menta: #3DB896;
-      --fundo: #EBEDEB;
-      --texto: #111111;
-      --branco: #ffffff;
-      --sombra: 0 2px 8px rgba(10,74,58,0.10);
-      --sombra-hover: 0 6px 20px rgba(10,74,58,0.18);
+      /* Primárias */
+      --color-bg:           #EEF0F4;
+      --color-turquoise:    #01B2AA;
+      --color-green-mid:    #2A7A6F;
+      --color-green-dark:   #1F3A3A;
 
-      /* Tints de fundo por categoria */
-      --acc-operacional:  #E8F5F1;
-      --acc-financeiro:   #E8F0F5;
-      --acc-comunicacao:  #F0EDF8;
-      --acc-sites:        #EEF5E8;
-      --acc-canais:       #F5EDE8;
-      --acc-treinamento:  #E8F2F8;
-
-      /* Cores de ícone por categoria */
-      --ico-operacional:  #1A7A5E;
-      --ico-financeiro:   #3A6E8F;
-      --ico-comunicacao:  #6B5DAF;
-      --ico-sites:        #4A7A2E;
-      --ico-canais:       #A05A2E;
-      --ico-treinamento:  #2E6A8F;
+      /* Secundárias */
+      --color-black:        #000000;
+      --color-gray-dark:    #24262D;
+      --color-gray-mid:     #4B4B4B;
+      --color-white:        #FFFFFF;
 
       /* Estruturais */
-      --border-subtle: rgba(10,74,58,0.08);
-      --radius-card: 14px;
-      --shadow-card: 0 1px 4px rgba(10,74,58,0.08), 0 4px 16px rgba(10,74,58,0.07);
-      --shadow-card-hover: 0 4px 12px rgba(10,74,58,0.15), 0 12px 32px rgba(10,74,58,0.14);
+      --border-subtle:      rgba(31,58,58,0.12);
+      --radius-card:        8px;
+      --shadow-card:        0 2px 8px rgba(31,58,58,0.08);
+      --shadow-card-hover:  0 4px 16px rgba(31,58,58,0.14);
+
+      /* Tints de fundo por categoria (paleta SBK) */
+      --acc-operacional:    rgba(1,178,170,0.10);
+      --acc-financeiro:     rgba(42,122,111,0.10);
+      --acc-comunicacao:    rgba(1,178,170,0.08);
+      --acc-sites:          rgba(42,122,111,0.08);
+      --acc-canais:         rgba(1,178,170,0.12);
+      --acc-treinamento:    rgba(42,122,111,0.12);
+
+      /* Cores de ícone por categoria */
+      --ico-operacional:    #01B2AA;
+      --ico-financeiro:     #2A7A6F;
+      --ico-comunicacao:    #01B2AA;
+      --ico-sites:          #2A7A6F;
+      --ico-canais:         #01B2AA;
+      --ico-treinamento:    #2A7A6F;
     }
 
     html, body {
       height: 100%;
-      font-family: 'Inter', sans-serif;
-      color: var(--texto);
+      font-family: 'Plus Jakarta Sans', 'Calibri', sans-serif;
+      color: var(--color-black);
     }
 
     body {
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      background-color: var(--fundo);
-      background-image: radial-gradient(circle, rgba(10,74,58,0.09) 1px, transparent 1px);
+      background-color: var(--color-bg);
+      background-image: radial-gradient(circle, rgba(31,58,58,0.06) 1px, transparent 1px);
       background-size: 24px 24px;
     }
 
     /* ── HEADER ── */
     header {
       flex-shrink: 0;
-      background: var(--verde-escuro);
-      color: var(--branco);
+      background: var(--color-green-dark);
+      color: var(--color-white);
       height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.22);
-      border-bottom: 2px solid var(--verde-menta);
+      border-bottom: 2px solid var(--color-turquoise);
       z-index: 100;
       position: relative;
     }
@@ -83,14 +86,14 @@
       align-items: center;
       gap: 10px;
       text-decoration: none;
-      color: var(--branco);
+      color: var(--color-white);
     }
 
     .logo-text {
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.04em;
-      color: var(--branco);
+      color: var(--color-white);
     }
 
     .logo-brand {
@@ -101,7 +104,7 @@
 
     .logo-subtitle {
       font-size: 10px;
-      font-weight: 500;
+      font-weight: 400;
       color: rgba(255,255,255,0.5);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -128,26 +131,26 @@
       gap: 12px;
       padding: 11px 16px;
       text-decoration: none;
-      color: var(--verde-escuro);
+      color: var(--color-green-dark);
       transition: background 0.2s ease, box-shadow 0.2s ease;
       max-width: 860px;
       margin: 0 auto;
       border-radius: 10px;
-      background: var(--branco);
+      background: var(--color-white);
       border: 1.5px solid var(--border-subtle);
-      border-left: 3px solid var(--verde-menta);
+      border-left: 3px solid var(--color-turquoise);
       box-shadow: var(--shadow-card);
     }
 
     .service-desk-link:hover {
-      background: rgba(61,184,150,0.06);
+      background: rgba(1,178,170,0.06);
       box-shadow: var(--shadow-card-hover);
     }
 
     .sd-icon-wrap {
       width: 34px;
       height: 34px;
-      background: rgba(61,184,150,0.15);
+      background: rgba(1,178,170,0.15);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -163,33 +166,33 @@
 
     .sd-title {
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.01em;
-      color: var(--verde-escuro);
+      color: var(--color-green-dark);
     }
 
     .sd-subtitle {
       font-size: 11px;
       font-weight: 400;
-      color: rgba(10,74,58,0.55);
+      color: rgba(31,58,58,0.55);
     }
 
     .sd-badge {
       margin-left: auto;
-      background: rgba(61,184,150,0.15);
-      color: var(--verde-medio);
+      background: rgba(1,178,170,0.15);
+      color: var(--color-green-mid);
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       padding: 3px 8px;
       border-radius: 20px;
-      border: 1px solid rgba(61,184,150,0.3);
+      border: 1px solid rgba(1,178,170,0.3);
     }
 
     .sd-arrow {
       opacity: 0.45;
-      color: var(--verde-medio);
+      color: var(--color-green-mid);
       flex-shrink: 0;
     }
 
@@ -242,29 +245,29 @@
 
     .greeting-text {
       font-size: 28px;
-      font-weight: 700;
-      color: var(--verde-escuro);
+      font-weight: 600;
+      color: var(--color-black);
       letter-spacing: -0.02em;
     }
 
     .greeting-date {
       font-size: 13px;
       font-weight: 400;
-      color: rgba(10,74,58,0.55);
+      color: var(--color-gray-mid);
       text-transform: capitalize;
     }
 
     .greeting-subtitle {
       font-size: 14px;
       font-weight: 400;
-      color: rgba(10,74,58,0.55);
+      color: var(--color-gray-mid);
       margin-top: 4px;
     }
 
     .greeting-divider {
       width: 40px;
       height: 3px;
-      background: var(--verde-menta);
+      background: var(--color-turquoise);
       border-radius: 2px;
       margin-top: 16px;
     }
@@ -280,7 +283,7 @@
 
     /* ── GROUP BUTTON ── */
     .group-btn {
-      background: var(--branco);
+      background: var(--color-white);
       border: 1.5px solid var(--border-subtle);
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-card);
@@ -292,7 +295,7 @@
       cursor: pointer;
       padding: 24px 24px 20px;
       transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Calibri', sans-serif;
       min-height: 170px;
       text-align: left;
       position: relative;
@@ -333,11 +336,11 @@
     .group-btn[data-group="treinamento"]  .btn-icon { color: var(--ico-treinamento); }
 
     .group-btn:hover {
-      background: var(--verde-escuro);
-      color: var(--branco);
+      background: var(--color-green-dark);
+      color: var(--color-white);
       box-shadow: var(--shadow-card-hover);
       transform: translateY(-3px);
-      border-color: var(--verde-menta);
+      border-color: var(--color-turquoise);
     }
 
     .btn-icon-wrap {
@@ -377,8 +380,8 @@
 
     .group-btn .btn-label {
       font-size: 13px;
-      font-weight: 700;
-      color: var(--texto);
+      font-weight: 600;
+      color: var(--color-black);
       transition: color 0.2s ease;
       text-align: left;
       line-height: 1.3;
@@ -386,13 +389,13 @@
     }
 
     .group-btn:hover .btn-label {
-      color: var(--branco);
+      color: var(--color-white);
     }
 
     .btn-count {
       font-size: 11px;
-      font-weight: 500;
-      color: rgba(10,74,58,0.45);
+      font-weight: 400;
+      color: rgba(31,58,58,0.45);
       transition: color 0.2s ease;
       letter-spacing: 0.02em;
     }
@@ -410,7 +413,7 @@
       width: 68px;
       height: 68px;
       border-radius: 50%;
-      background: rgba(10,74,58,0.05);
+      background: rgba(31,58,58,0.05);
       transition: background 0.2s ease;
       pointer-events: none;
     }
@@ -441,10 +444,10 @@
       border: none;
       padding: 0;
       cursor: pointer;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Calibri', sans-serif;
       font-size: 13px;
-      font-weight: 500;
-      color: var(--verde-medio);
+      font-weight: 400;
+      color: var(--color-turquoise);
       display: flex;
       align-items: center;
       gap: 5px;
@@ -452,11 +455,11 @@
     }
 
     .breadcrumb-home:hover {
-      color: var(--verde-escuro);
+      color: var(--color-green-dark);
     }
 
     .breadcrumb-sep {
-      color: rgba(10,74,58,0.3);
+      color: rgba(31,58,58,0.3);
       font-size: 13px;
       line-height: 1;
       user-select: none;
@@ -465,18 +468,18 @@
     .breadcrumb-current {
       font-size: 13px;
       font-weight: 600;
-      color: var(--verde-escuro);
+      color: var(--color-green-dark);
     }
 
     .group-detail-title {
       font-size: 20px;
-      font-weight: 700;
-      color: var(--verde-escuro);
+      font-weight: 600;
+      color: var(--color-green-dark);
       letter-spacing: -0.01em;
       margin-bottom: 20px;
       flex-shrink: 0;
       padding-left: 12px;
-      border-left: 3px solid var(--verde-menta);
+      border-left: 3px solid var(--color-turquoise);
     }
 
     /* ── LINKS GRID (detail screen) ── */
@@ -495,28 +498,28 @@
       justify-content: center;
       gap: 14px;
       padding: 28px 18px;
-      background: var(--branco);
+      background: var(--color-white);
       border-radius: 10px;
       box-shadow: var(--shadow-card);
       text-decoration: none;
-      color: var(--texto);
+      color: var(--color-black);
       transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
       cursor: pointer;
       border: 1.5px solid var(--border-subtle);
     }
 
     .inner-card:hover {
-      background: var(--verde-escuro);
-      color: var(--branco);
+      background: var(--color-green-dark);
+      color: var(--color-white);
       box-shadow: var(--shadow-card-hover);
       transform: translateY(-2px);
-      border-color: var(--verde-menta);
+      border-color: var(--color-turquoise);
     }
 
     .inner-card .card-icon {
       width: 48px;
       height: 48px;
-      color: var(--verde-menta);
+      color: var(--color-turquoise);
       flex-shrink: 0;
       transition: color 0.2s ease;
     }
@@ -527,7 +530,7 @@
     }
 
     .inner-card:hover .card-icon {
-      color: var(--branco);
+      color: var(--color-white);
     }
 
     .inner-card .card-name {
@@ -541,14 +544,14 @@
     /* ── FOOTER ── */
     footer {
       flex-shrink: 0;
-      background: var(--verde-escuro);
+      background: var(--color-green-dark);
       color: rgba(255,255,255,0.40);
       text-align: center;
       font-size: 11px;
       font-weight: 400;
       padding: 14px 28px;
       letter-spacing: 0.03em;
-      border-top: 1px solid rgba(61,184,150,0.25);
+      border-top: 1px solid rgba(1,178,170,0.25);
     }
   </style>
 </head>
@@ -569,7 +572,7 @@
   <div class="service-desk-banner">
     <a href="https://servicedesk.sbk.com.br/" target="_blank" rel="noopener noreferrer" class="service-desk-link">
       <div class="sd-icon-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--verde-menta);width:18px;height:18px;flex-shrink:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-turquoise);width:18px;height:18px;flex-shrink:0;">
           <path d="M3 18v-6a9 9 0 0118 0v6"/>
           <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
         </svg>
