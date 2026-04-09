@@ -18,24 +18,48 @@
       --verde-escuro: #0A4A3A;
       --verde-medio: #1A7A5E;
       --verde-menta: #3DB896;
-      --fundo: #EAECEA;
+      --fundo: #E5E7E5;
       --texto: #111111;
       --branco: #ffffff;
       --sombra: 0 2px 8px rgba(10,74,58,0.10);
       --sombra-hover: 0 6px 20px rgba(10,74,58,0.18);
+
+      /* Tints de fundo por categoria */
+      --acc-operacional:  #E8F5F1;
+      --acc-financeiro:   #E8F0F5;
+      --acc-comunicacao:  #F0EDF8;
+      --acc-sites:        #EEF5E8;
+      --acc-canais:       #F5EDE8;
+      --acc-treinamento:  #E8F2F8;
+
+      /* Cores de ícone por categoria */
+      --ico-operacional:  #1A7A5E;
+      --ico-financeiro:   #3A6E8F;
+      --ico-comunicacao:  #6B5DAF;
+      --ico-sites:        #4A7A2E;
+      --ico-canais:       #A05A2E;
+      --ico-treinamento:  #2E6A8F;
+
+      /* Estruturais */
+      --border-subtle: rgba(10,74,58,0.08);
+      --radius-card: 14px;
+      --shadow-card: 0 1px 4px rgba(10,74,58,0.08), 0 4px 16px rgba(10,74,58,0.07);
+      --shadow-card-hover: 0 4px 12px rgba(10,74,58,0.15), 0 12px 32px rgba(10,74,58,0.14);
     }
 
     html, body {
       height: 100%;
-      overflow: hidden;
       font-family: 'Inter', sans-serif;
-      background: var(--fundo);
       color: var(--texto);
     }
 
     body {
       display: flex;
       flex-direction: column;
+      min-height: 100%;
+      background-color: var(--fundo);
+      background-image: radial-gradient(circle, rgba(10,74,58,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
     }
 
     /* ── HEADER ── */
@@ -48,8 +72,9 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 28px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.22);
       z-index: 100;
+      position: relative;
     }
 
     .logo {
@@ -77,8 +102,10 @@
     /* ── SERVICE DESK BANNER ── */
     .service-desk-banner {
       flex-shrink: 0;
-      background: var(--verde-escuro);
+      background: var(--branco);
+      border-bottom: 1px solid var(--border-subtle);
       padding: 0 28px;
+      box-shadow: 0 1px 0 rgba(10,74,58,0.06);
     }
 
     .service-desk-link {
@@ -86,15 +113,28 @@
       align-items: center;
       justify-content: center;
       gap: 12px;
-      padding: 10px 0;
+      padding: 9px 16px;
       text-decoration: none;
-      color: var(--branco);
+      color: var(--verde-escuro);
       transition: background 0.2s ease;
-      border-bottom: 2px solid var(--verde-menta);
+      max-width: 860px;
+      margin: 0 auto;
+      border-radius: 6px;
     }
 
     .service-desk-link:hover {
-      background: var(--verde-medio);
+      background: rgba(61,184,150,0.08);
+    }
+
+    .sd-icon-wrap {
+      width: 34px;
+      height: 34px;
+      background: rgba(61,184,150,0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .sd-label {
@@ -104,38 +144,49 @@
     }
 
     .sd-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--branco);
+      letter-spacing: 0.01em;
+      color: var(--verde-escuro);
     }
 
     .sd-subtitle {
       font-size: 11px;
       font-weight: 400;
-      color: rgba(255,255,255,0.65);
+      color: rgba(10,74,58,0.55);
+    }
+
+    .sd-badge {
+      margin-left: auto;
+      background: rgba(61,184,150,0.15);
+      color: var(--verde-medio);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 20px;
+      border: 1px solid rgba(61,184,150,0.3);
     }
 
     .sd-arrow {
-      margin-left: 6px;
-      opacity: 0.7;
+      opacity: 0.45;
+      color: var(--verde-medio);
+      flex-shrink: 0;
     }
 
     /* ── MAIN ── */
     main {
       flex: 1;
-      overflow: hidden;
-      padding: 14px 20px;
+      overflow-y: auto;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      min-height: 0;
     }
 
     /* ── VIEW SWITCHING ── */
     .view {
       display: none;
-      flex: 1;
-      min-height: 0;
       flex-direction: column;
     }
 
@@ -143,112 +194,229 @@
       display: flex;
     }
 
+    /* Home: centralizada, sem esticar */
+    #view-home {
+      align-items: center;
+      padding: 0 20px 48px;
+    }
+
+    /* Group detail: preenche a altura */
+    #view-group {
+      flex: 1;
+      min-height: 0;
+      padding: 20px;
+    }
+
+    /* ── GREETING SECTION ── */
+    .greeting-section {
+      width: 100%;
+      max-width: 860px;
+      padding: 28px 0 18px;
+    }
+
+    .greeting-inner {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .greeting-text {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--verde-escuro);
+      letter-spacing: -0.01em;
+    }
+
+    .greeting-date {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(10,74,58,0.55);
+      text-transform: capitalize;
+    }
+
     /* ── HOME GRID (3×2) ── */
     .home-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 12px;
-      flex: 1;
-      min-height: 0;
+      gap: 14px;
+      width: 100%;
+      max-width: 860px;
     }
 
     /* ── GROUP BUTTON ── */
     .group-btn {
       background: var(--branco);
-      border: 1.5px solid transparent;
-      border-radius: 12px;
-      box-shadow: var(--sombra);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0;
       cursor: pointer;
-      padding: 16px;
+      padding: 20px 20px 16px;
       transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
       font-family: 'Inter', sans-serif;
+      min-height: 120px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Tint de fundo por categoria */
+    .group-btn[data-group="operacional"]  { background: var(--acc-operacional); }
+    .group-btn[data-group="financeiro"]   { background: var(--acc-financeiro); }
+    .group-btn[data-group="comunicacao"]  { background: var(--acc-comunicacao); }
+    .group-btn[data-group="sites"]        { background: var(--acc-sites); }
+    .group-btn[data-group="canais"]       { background: var(--acc-canais); }
+    .group-btn[data-group="treinamento"]  { background: var(--acc-treinamento); }
+
+    /* Cor de ícone por categoria */
+    .group-btn[data-group="operacional"]  .btn-icon { color: var(--ico-operacional); }
+    .group-btn[data-group="financeiro"]   .btn-icon { color: var(--ico-financeiro); }
+    .group-btn[data-group="comunicacao"]  .btn-icon { color: var(--ico-comunicacao); }
+    .group-btn[data-group="sites"]        .btn-icon { color: var(--ico-sites); }
+    .group-btn[data-group="canais"]       .btn-icon { color: var(--ico-canais); }
+    .group-btn[data-group="treinamento"]  .btn-icon { color: var(--ico-treinamento); }
 
     .group-btn:hover {
       background: var(--verde-escuro);
       color: var(--branco);
-      box-shadow: var(--sombra-hover);
-      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-3px);
       border-color: var(--verde-menta);
     }
 
     .group-btn .btn-icon {
-      width: 36px;
-      height: 36px;
-      color: var(--verde-menta);
+      width: 32px;
+      height: 32px;
       transition: color 0.2s ease;
       flex-shrink: 0;
+      margin-bottom: 12px;
     }
 
     .group-btn:hover .btn-icon {
-      color: var(--branco);
+      color: rgba(255,255,255,0.75);
+    }
+
+    .btn-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      width: 100%;
     }
 
     .group-btn .btn-label {
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       color: var(--texto);
       transition: color 0.2s ease;
-      text-align: center;
+      text-align: left;
       line-height: 1.3;
+      letter-spacing: 0.01em;
     }
 
     .group-btn:hover .btn-label {
       color: var(--branco);
     }
 
-    /* ── GROUP DETAIL VIEW ── */
-    .group-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-      flex-shrink: 0;
+    .btn-count {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(10,74,58,0.45);
+      transition: color 0.2s ease;
+      letter-spacing: 0.02em;
     }
 
-    .back-btn {
+    .group-btn:hover .btn-count {
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* Círculo decorativo no canto */
+    .group-btn::after {
+      content: '';
+      position: absolute;
+      right: -10px;
+      bottom: -10px;
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(10,74,58,0.05);
+      transition: background 0.2s ease;
+      pointer-events: none;
+    }
+
+    .group-btn:hover::after {
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ── GROUP DETAIL VIEW ── */
+    .group-view-inner {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 4px 0 40px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
       display: flex;
       align-items: center;
       gap: 6px;
-      background: var(--verde-escuro);
-      color: var(--branco);
-      border: none;
-      border-radius: 8px;
-      padding: 7px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer;
-      transition: background 0.2s ease;
+      margin-bottom: 16px;
       flex-shrink: 0;
     }
 
-    .back-btn:hover {
-      background: var(--verde-medio);
+    .breadcrumb-home {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--verde-medio);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s ease;
     }
 
-    .group-screen-title {
-      font-size: 16px;
+    .breadcrumb-home:hover {
+      color: var(--verde-escuro);
+    }
+
+    .breadcrumb-sep {
+      color: rgba(10,74,58,0.3);
+      font-size: 13px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .breadcrumb-current {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--verde-escuro);
+    }
+
+    .group-detail-title {
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--verde-medio);
+      color: var(--verde-escuro);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+      flex-shrink: 0;
     }
 
     /* ── LINKS GRID (detail screen) ── */
     .links-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px;
       align-content: start;
-      flex: 1;
-      min-height: 0;
     }
 
     /* ── INNER CARD (link tile) ── */
@@ -257,22 +425,22 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 20px 12px;
+      gap: 10px;
+      padding: 22px 14px;
       background: var(--branco);
-      border-radius: 8px;
-      box-shadow: var(--sombra);
+      border-radius: 10px;
+      box-shadow: var(--shadow-card);
       text-decoration: none;
       color: var(--texto);
       transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
       cursor: pointer;
-      border: 1.5px solid transparent;
+      border: 1.5px solid var(--border-subtle);
     }
 
     .inner-card:hover {
       background: var(--verde-escuro);
       color: var(--branco);
-      box-shadow: var(--sombra-hover);
+      box-shadow: var(--shadow-card-hover);
       transform: translateY(-2px);
       border-color: var(--verde-menta);
     }
@@ -316,15 +484,18 @@
   <!-- ── SERVICE DESK BANNER ── -->
   <div class="service-desk-banner">
     <a href="https://servicedesk.sbk.com.br/" target="_blank" rel="noopener noreferrer" class="service-desk-link">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:#3DB896;width:26px;height:26px;flex-shrink:0;">
-        <path d="M3 18v-6a9 9 0 0118 0v6"/>
-        <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
-      </svg>
+      <div class="sd-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--verde-menta);width:18px;height:18px;flex-shrink:0;">
+          <path d="M3 18v-6a9 9 0 0118 0v6"/>
+          <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+        </svg>
+      </div>
       <div class="sd-label">
         <span class="sd-title">Service Desk</span>
         <span class="sd-subtitle">Abertura e acompanhamento de chamados</span>
       </div>
-      <svg class="sd-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3DB896" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <span class="sd-badge">Suporte</span>
+      <svg class="sd-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
     </a>
@@ -335,21 +506,44 @@
 
     <!-- HOME VIEW -->
     <div id="view-home" class="view active">
+
+      <!-- SAUDAÇÃO -->
+      <div class="greeting-section">
+        <div class="greeting-inner">
+          <p class="greeting-text" id="greeting-text"></p>
+          <p class="greeting-date" id="greeting-date"></p>
+        </div>
+      </div>
+
+      <!-- GRID DE CATEGORIAS -->
       <div class="home-grid" id="home-grid"></div>
+
     </div>
 
     <!-- GROUP DETAIL VIEW -->
     <div id="view-group" class="view">
-      <div class="group-header">
-        <button id="btn-back" class="back-btn" aria-label="Voltar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 12H5M12 5l-7 7 7 7"/>
-          </svg>
-          Voltar
-        </button>
-        <h2 id="group-title" class="group-screen-title"></h2>
+      <div class="group-view-inner">
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb">
+          <button id="btn-back" class="breadcrumb-home" aria-label="Voltar para início">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Início
+          </button>
+          <span class="breadcrumb-sep">/</span>
+          <span id="group-title" class="breadcrumb-current"></span>
+        </nav>
+
+        <!-- TÍTULO DA PÁGINA -->
+        <h2 id="group-detail-title" class="group-detail-title"></h2>
+
+        <!-- LINKS -->
+        <div id="group-links" class="links-grid"></div>
+
       </div>
-      <div id="group-links" class="links-grid"></div>
     </div>
 
   </main>
@@ -357,16 +551,31 @@
   <script>
     (function () {
 
-      /* ── DATE ── */
-      function updateDate() {
+      /* ── SAUDAÇÃO E DATA ── */
+      function getGreeting() {
+        var h = new Date().getHours();
+        if (h >= 5 && h < 12)  return 'Bom dia';
+        if (h >= 12 && h < 18) return 'Boa tarde';
+        return 'Boa noite';
+      }
+
+      function updateDateAndGreeting() {
         var now = new Date();
         var options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         var dateStr = now.toLocaleDateString('pt-BR', options);
         dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
-        document.getElementById('current-date').textContent = dateStr;
+
+        var headerDate = document.getElementById('current-date');
+        if (headerDate) headerDate.textContent = dateStr;
+
+        var greetingText = document.getElementById('greeting-text');
+        var greetingDate = document.getElementById('greeting-date');
+        if (greetingText) greetingText.textContent = getGreeting();
+        if (greetingDate) greetingDate.textContent = dateStr;
       }
-      updateDate();
-      setInterval(updateDate, 60000);
+
+      updateDateAndGreeting();
+      setInterval(updateDateAndGreeting, 60000);
 
       /* ── DATA ── */
       var GROUPS = [
@@ -503,14 +712,28 @@
         }
       ];
 
-      /* ── NAVIGATION ── */
+      /* ── NAVEGAÇÃO ── */
+      function getGroupItemCount(group) {
+        var total = group.links.length;
+        if (group.subgroups) total += group.subgroups.length;
+        return total;
+      }
+
       function renderHomeGrid() {
         var grid = document.getElementById('home-grid');
         GROUPS.forEach(function (group) {
+          var count = getGroupItemCount(group);
+          var countLabel = count === 1 ? '1 item' : count + ' itens';
+
           var btn = document.createElement('button');
           btn.className = 'group-btn';
           btn.setAttribute('data-group', group.id);
-          btn.innerHTML = group.icon + '<span class="btn-label">' + group.label + '</span>';
+          btn.innerHTML =
+            group.icon +
+            '<div class="btn-footer">' +
+              '<span class="btn-label">' + group.label + '</span>' +
+              '<span class="btn-count">' + countLabel + '</span>' +
+            '</div>';
           btn.addEventListener('click', function () { showGroup(group.id); });
           grid.appendChild(btn);
         });
@@ -518,7 +741,9 @@
 
       function showGroup(groupId) {
         var group = GROUPS.find(function (g) { return g.id === groupId; });
+
         document.getElementById('group-title').textContent = group.label;
+        document.getElementById('group-detail-title').textContent = group.label;
 
         var container = document.getElementById('group-links');
         container.innerHTML = '';
@@ -550,7 +775,9 @@
       function showSubGroup(parentGroupId, subgroupId) {
         var group = GROUPS.find(function (g) { return g.id === parentGroupId; });
         var sub = group.subgroups.find(function (s) { return s.id === subgroupId; });
+
         document.getElementById('group-title').textContent = sub.label;
+        document.getElementById('group-detail-title').textContent = sub.label;
 
         var container = document.getElementById('group-links');
         container.innerHTML = '';
