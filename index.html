@@ -122,19 +122,22 @@
       flex-shrink: 0;
       background: transparent;
       padding: 14px 20px 2px;
+      display: flex;
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .service-desk-link {
+      flex: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 12px;
       padding: 11px 16px;
       text-decoration: none;
       color: var(--color-green-dark);
       transition: background 0.2s ease, box-shadow 0.2s ease;
-      max-width: 860px;
-      margin: 0 auto;
       border-radius: 10px;
       background: var(--color-white);
       border: 1.5px solid var(--border-subtle);
@@ -568,7 +571,7 @@
     <span class="current-date" id="current-date"></span>
   </header>
 
-  <!-- ── SERVICE DESK BANNER ── -->
+  <!-- ── QUICK ACCESS BANNERS ── -->
   <div class="service-desk-banner">
     <a href="https://servicedesk.sbk.com.br/" target="_blank" rel="noopener noreferrer" class="service-desk-link">
       <div class="sd-icon-wrap">
@@ -582,6 +585,21 @@
         <span class="sd-subtitle">Abertura e acompanhamento de chamados</span>
       </div>
       <span class="sd-badge">Suporte</span>
+      <svg class="sd-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+    <a href="https://sbk-ops-chat.vercel.app/" target="_blank" rel="noopener noreferrer" class="service-desk-link">
+      <div class="sd-icon-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-turquoise);width:18px;height:18px;flex-shrink:0;">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+      </div>
+      <div class="sd-label">
+        <span class="sd-title">Chat de Dúvidas</span>
+        <span class="sd-subtitle">Tire dúvidas sobre processos operacionais</span>
+      </div>
+      <span class="sd-badge">Operacional</span>
       <svg class="sd-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
@@ -697,11 +715,6 @@
               name: 'Laudos AGI',
               href: 'http://192.168.254.224:5002/login',
               icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12l2 2 4-4"/></svg>'
-            },
-            {
-              name: 'Chat de Dúvidas',
-              href: 'https://sbk-ops-chat.vercel.app/',
-              icon: '<svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>'
             }
           ],
           subgroups: [
