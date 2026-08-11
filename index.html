@@ -7,7 +7,7 @@
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -16,8 +16,28 @@
     }
 
     :root {
+      /* ── SBK Brand Palette — Brand Book 2026 (fonte única da verdade) ──
+         Primárias */
+      --sbk-verde-escuro:   #023631;
+      --sbk-ciano-escuro:   #075056;
+      --sbk-off-white:      #ECEFF3;
+      /* Secundárias */
+      --sbk-verde-claro:    #0A5A52;
+      --sbk-verde-profundo: #012824;
+      --sbk-ciano:          #2A7C79;
+      --sbk-ciano-profundo: #0E4442;
+      --sbk-chumbo-leve:    #4A545E;
+      --sbk-branco:         #FFFFFF;
+
+      /* Barra superior — padronizada entre todos os portais SBK */
+      --header-bg:          var(--sbk-verde-escuro);
+      --header-h:           64px;
+      --header-rule-h:      2px;
+      --header-rule-from:   var(--sbk-ciano);
+      --header-rule-to:     var(--sbk-verde-escuro);
+
       /* Primárias */
-      --color-bg:           #EEF0F4;
+      --color-bg:           var(--sbk-off-white);
       --color-turquoise:    #01B2AA;
       --color-green-mid:    #2A7A6F;
       --color-green-dark:   #1F3A3A;
@@ -66,69 +86,79 @@
       background-size: 24px 24px;
     }
 
-    /* ── HEADER ── */
-    header {
-      flex-shrink: 0;
-      background: var(--color-green-dark);
-      color: var(--color-white);
-      height: 64px;
+    /* ─── Site Header (Verde Escuro) ─────────────────────────────────── */
+    .site-header {
+      height: var(--header-h);
+      min-height: var(--header-h);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 0 28px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.22);
-      border-bottom: 2px solid var(--color-turquoise);
-      z-index: 100;
-      position: relative;
+      padding: 0 36px;
+      background: var(--header-bg);
+      flex-shrink: 0;
+      gap: 14px;
     }
 
-    .logo {
+    /* Fio Ciano→Verde Escuro sob todas as barras superiores */
+    .header-rule {
+      height: var(--header-rule-h);
+      min-height: var(--header-rule-h);
+      background: linear-gradient(90deg, var(--header-rule-from) 0%, var(--header-rule-to) 100%);
+      flex-shrink: 0;
+    }
+
+    /* ── Logo oficial SBK (símbolo em cards + wordmark) ── */
+    .sbk-logo {
       display: flex;
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: var(--color-white);
+      user-select: none;
+      flex-shrink: 0;
+      /* Zona de respiro: nada encosta na logo (Brand Book 2026) */
+      padding-right: 4px;
     }
-
-    .logo-mark {
+    .sbk-mark {
       display: flex;
       align-items: center;
-      color: var(--color-white);
+      /* cor única da logo — versão branca sobre fundo escuro */
+      color: var(--sbk-branco);
     }
-
-    .logo-symbol {
-      width: 27px;
-      height: 27px;
+    .sbk-symbol {
+      width: 30px;
+      height: 30px;
       display: block;
       fill: currentColor;
     }
-
-    .logo-text {
-      font-size: 20px;
+    .sbk-wordgroup { display: flex; flex-direction: column; }
+    .sbk-wordmark {
+      font-size: 19px;
       font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--color-white);
+      letter-spacing: -.01em;
+      color: var(--sbk-branco);
+      line-height: 1;
     }
-
-    .logo-brand {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .logo-subtitle {
-      font-size: 10px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.12em;
+    .sbk-sub {
+      display: block;
+      font-size: 9.5px;
+      font-weight: 300;
+      color: rgba(255,255,255,.55);
+      letter-spacing: .08em;
       text-transform: uppercase;
+      margin-top: 3px;
     }
+
+    .h-spacer { flex: 1; }
 
     .current-date {
       font-size: 11px;
-      font-weight: 400;
+      font-weight: 300;
       color: rgba(255,255,255,0.65);
       text-transform: capitalize;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 560px) {
+      .site-header { padding: 0 20px; }
     }
 
     /* ── SERVICE DESK BANNER ── */
@@ -576,22 +606,25 @@
 
 
   <!-- ── HEADER ── -->
-  <header>
-    <div class="logo">
-      <span class="logo-mark" aria-hidden="true">
-        <svg class="logo-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
+  <header class="site-header">
+    <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK Intranet">
+      <!-- Símbolo SBK (sistema de cards) -->
+      <span class="sbk-mark" aria-hidden="true">
+        <svg class="sbk-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
           <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4"/>
-          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".84"/>
-          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".68"/>
+          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".8"/>
+          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".6"/>
         </svg>
       </span>
-      <div class="logo-brand">
-        <span class="logo-text">SBK</span>
-        <span class="logo-subtitle">Intranet</span>
-      </div>
-    </div>
+      <span class="sbk-wordgroup">
+        <span class="sbk-wordmark">SBK</span>
+        <span class="sbk-sub">Intranet</span>
+      </span>
+    </a>
+    <div class="h-spacer"></div>
     <span class="current-date" id="current-date"></span>
   </header>
+  <div class="header-rule" aria-hidden="true"></div>
 
   <!-- ── QUICK ACCESS BANNERS ── -->
   <div class="service-desk-banner">
