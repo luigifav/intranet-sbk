@@ -6,6 +6,7 @@
   <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>SBK — Central de Chamados Internos</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <!-- TODO: self-host Plus Jakarta Sans to eliminate Google Fonts dependency and enable SRI -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -98,12 +99,24 @@
     .sbk-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       user-select: none;
       flex-shrink: 0;
+      /* Zona de respiro: nada encosta na logo (Brand Book 2026) */
+      padding-right: 4px;
     }
-    .sbk-mark { display: flex; align-items: center; }
+    .sbk-mark {
+      display: flex;
+      align-items: center;
+      /* cor única da logo (versão branca sobre fundo escuro) */
+      color: #FFFFFF;
+    }
+    .sbk-symbol {
+      width: 28px;
+      height: 28px;
+      display: block;
+    }
     .sbk-wordgroup { display: flex; flex-direction: column; }
     .sbk-wordmark {
       font-size: 19px;
@@ -471,6 +484,21 @@
 </head>
 <body>
 
+<!--
+  Símbolo da logo SBK — sistema de cards do Brand Book 2026.
+  Definido uma única vez e reutilizado via <use> nos headers.
+  Monocromático (currentColor), com as camadas diferenciadas apenas por
+  opacidade (60-100%), como prevê o sistema de cards da marca.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sbk-mark" viewBox="0 0 30 30">
+    <!-- cards em camadas, do primeiro plano ao fundo -->
+    <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4" fill="currentColor"/>
+    <rect x="9.6" y="9.6"  width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".84"/>
+    <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".68"/>
+  </symbol>
+</svg>
+
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 1 — Selection
 ═══════════════════════════════════════════════════════════════ -->
@@ -478,12 +506,9 @@
 
   <header class="site-header">
     <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK Central de Chamados Internos">
-      <!-- SBK angular blade mark -->
+      <!-- Símbolo SBK (sistema de cards) -->
       <span class="sbk-mark" aria-hidden="true">
-        <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
-          <path d="M0 26 L8.5 0 L13.5 0 L5 26 Z" fill="#01B2AA"/>
-          <path d="M17 26 L23 8 L28 8 L22 26 Z" fill="white" opacity=".8"/>
-        </svg>
+        <svg class="sbk-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
       </span>
       <span class="sbk-wordgroup">
         <span class="sbk-wordmark">SBK</span>
@@ -612,10 +637,7 @@
   <header class="site-header">
     <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK">
       <span class="sbk-mark" aria-hidden="true">
-        <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
-          <path d="M0 26 L8.5 0 L13.5 0 L5 26 Z" fill="#01B2AA"/>
-          <path d="M17 26 L23 8 L28 8 L22 26 Z" fill="white" opacity=".8"/>
-        </svg>
+        <svg class="sbk-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
       </span>
       <span class="sbk-wordgroup">
         <span class="sbk-wordmark">SBK</span>
@@ -672,10 +694,7 @@
   <header class="site-header">
     <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK">
       <span class="sbk-mark" aria-hidden="true">
-        <svg width="32" height="26" viewBox="0 0 32 26" fill="none">
-          <path d="M0 26 L8.5 0 L13.5 0 L5 26 Z" fill="#01B2AA"/>
-          <path d="M17 26 L23 8 L28 8 L22 26 Z" fill="white" opacity=".8"/>
-        </svg>
+        <svg class="sbk-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
       </span>
       <span class="sbk-wordgroup">
         <span class="sbk-wordmark">SBK</span>
