@@ -113,8 +113,8 @@
       color: #FFFFFF;
     }
     .sbk-symbol {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       display: block;
     }
     .sbk-wordgroup { display: flex; flex-direction: column; }
@@ -184,6 +184,29 @@
       align-items: center;
       justify-content: center;
       padding: 48px 24px 56px;
+    }
+
+    /* ── Logo em destaque no topo do conteúdo ── */
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      /* zona de respiro: nada encosta na logo */
+      margin-bottom: 30px;
+      color: var(--teal-dark);
+      user-select: none;
+    }
+    .brand-lockup-symbol {
+      width: 46px;
+      height: 46px;
+      display: block;
+    }
+    .brand-lockup-word {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1;
+      color: var(--teal-dark);
     }
 
     .select-eyebrow {
@@ -462,6 +485,9 @@
         align-items: center;
       }
       .sbk-sub     { display: none; }
+      .brand-lockup        { gap: 11px; margin-bottom: 22px; }
+      .brand-lockup-symbol { width: 36px; height: 36px; }
+      .brand-lockup-word   { font-size: 28px; }
     }
     @media (max-width: 420px) {
       .h-context { display: none; }
@@ -520,6 +546,14 @@
   <div class="header-rule" aria-hidden="true"></div>
 
   <div class="select-body">
+    <!-- Logo SBK no topo da página (versão Verde Escuro sobre fundo claro) -->
+    <div class="brand-lockup" role="img" aria-label="SBK">
+      <span class="brand-lockup-mark" aria-hidden="true">
+        <svg class="brand-lockup-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
+      </span>
+      <span class="brand-lockup-word" aria-hidden="true">SBK</span>
+    </div>
+
     <p class="select-eyebrow">Central de Chamados Internos</p>
     <h1 class="select-title">Como podemos te ajudar?</h1>
     <p class="select-subtitle">
