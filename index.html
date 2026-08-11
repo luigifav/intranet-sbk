@@ -100,6 +100,7 @@
       width: 27px;
       height: 27px;
       display: block;
+      fill: currentColor;
     }
 
     .logo-text {
@@ -573,24 +574,16 @@
 </head>
 <body>
 
-  <!--
-    Símbolo da logo SBK — sistema de cards do Brand Book 2026.
-    Definido uma única vez e reutilizado via <use>.
-  -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="sbk-mark" viewBox="0 0 30 30">
-      <!-- cards em camadas, do primeiro plano ao fundo -->
-      <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4" fill="currentColor"/>
-      <rect x="9.6" y="9.6"  width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".84"/>
-      <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".68"/>
-    </symbol>
-  </svg>
 
   <!-- ── HEADER ── -->
   <header>
     <div class="logo">
       <span class="logo-mark" aria-hidden="true">
-        <svg class="logo-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
+        <svg class="logo-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
+          <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4"/>
+          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".84"/>
+          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".68"/>
+        </svg>
       </span>
       <div class="logo-brand">
         <span class="logo-text">SBK</span>
