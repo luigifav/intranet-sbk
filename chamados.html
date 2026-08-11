@@ -113,9 +113,10 @@
       color: #FFFFFF;
     }
     .sbk-symbol {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       display: block;
+      fill: currentColor;
     }
     .sbk-wordgroup { display: flex; flex-direction: column; }
     .sbk-wordmark {
@@ -184,6 +185,30 @@
       align-items: center;
       justify-content: center;
       padding: 48px 24px 56px;
+    }
+
+    /* ── Logo em destaque no topo do conteúdo ── */
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      /* zona de respiro: nada encosta na logo */
+      margin-bottom: 30px;
+      color: var(--teal-dark);
+      user-select: none;
+    }
+    .brand-lockup-symbol {
+      width: 46px;
+      height: 46px;
+      display: block;
+      fill: currentColor;
+    }
+    .brand-lockup-word {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1;
+      color: var(--teal-dark);
     }
 
     .select-eyebrow {
@@ -462,6 +487,9 @@
         align-items: center;
       }
       .sbk-sub     { display: none; }
+      .brand-lockup        { gap: 11px; margin-bottom: 22px; }
+      .brand-lockup-symbol { width: 36px; height: 36px; }
+      .brand-lockup-word   { font-size: 28px; }
     }
     @media (max-width: 420px) {
       .h-context { display: none; }
@@ -484,20 +512,6 @@
 </head>
 <body>
 
-<!--
-  Símbolo da logo SBK — sistema de cards do Brand Book 2026.
-  Definido uma única vez e reutilizado via <use> nos headers.
-  Monocromático (currentColor), com as camadas diferenciadas apenas por
-  opacidade (60-100%), como prevê o sistema de cards da marca.
--->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="sbk-mark" viewBox="0 0 30 30">
-    <!-- cards em camadas, do primeiro plano ao fundo -->
-    <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4" fill="currentColor"/>
-    <rect x="9.6" y="9.6"  width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".84"/>
-    <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".68"/>
-  </symbol>
-</svg>
 
 <!-- ═══════════════════════════════════════════════════════════
      SCREEN 1 — Selection
@@ -508,7 +522,11 @@
     <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK Central de Chamados Internos">
       <!-- Símbolo SBK (sistema de cards) -->
       <span class="sbk-mark" aria-hidden="true">
-        <svg class="sbk-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
+        <svg class="sbk-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
+          <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4"/>
+          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".84"/>
+          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".68"/>
+        </svg>
       </span>
       <span class="sbk-wordgroup">
         <span class="sbk-wordmark">SBK</span>
@@ -520,6 +538,18 @@
   <div class="header-rule" aria-hidden="true"></div>
 
   <div class="select-body">
+    <!-- Logo SBK no topo da página (versão Verde Escuro sobre fundo claro) -->
+    <div class="brand-lockup" role="img" aria-label="SBK">
+      <span class="brand-lockup-mark" aria-hidden="true">
+        <svg class="brand-lockup-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
+          <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4"/>
+          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".84"/>
+          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".68"/>
+        </svg>
+      </span>
+      <span class="brand-lockup-word" aria-hidden="true">SBK</span>
+    </div>
+
     <p class="select-eyebrow">Central de Chamados Internos</p>
     <h1 class="select-title">Como podemos te ajudar?</h1>
     <p class="select-subtitle">
@@ -637,7 +667,11 @@
   <header class="site-header">
     <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK">
       <span class="sbk-mark" aria-hidden="true">
-        <svg class="sbk-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
+        <svg class="sbk-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
+          <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4"/>
+          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".84"/>
+          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".68"/>
+        </svg>
       </span>
       <span class="sbk-wordgroup">
         <span class="sbk-wordmark">SBK</span>
@@ -694,7 +728,11 @@
   <header class="site-header">
     <a class="sbk-logo" href="#" onclick="return false;" aria-label="SBK">
       <span class="sbk-mark" aria-hidden="true">
-        <svg class="sbk-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
+        <svg class="sbk-symbol" viewBox="0 0 30 30" fill="currentColor" aria-hidden="true">
+          <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4"/>
+          <rect x="9.6" y="9.6" width="10.8" height="10.8" rx="3.4" opacity=".84"/>
+          <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" opacity=".68"/>
+        </svg>
       </span>
       <span class="sbk-wordgroup">
         <span class="sbk-wordmark">SBK</span>
