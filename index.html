@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SBK Intranet</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet" />
@@ -84,9 +85,21 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       color: var(--color-white);
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      color: var(--color-white);
+    }
+
+    .logo-symbol {
+      width: 27px;
+      height: 27px;
+      display: block;
     }
 
     .logo-text {
@@ -560,9 +573,25 @@
 </head>
 <body>
 
+  <!--
+    Símbolo da logo SBK — sistema de cards do Brand Book 2026.
+    Definido uma única vez e reutilizado via <use>.
+  -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="sbk-mark" viewBox="0 0 30 30">
+      <!-- cards em camadas, do primeiro plano ao fundo -->
+      <rect x="0.8" y="18.4" width="10.8" height="10.8" rx="3.4" fill="currentColor"/>
+      <rect x="9.6" y="9.6"  width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".84"/>
+      <rect x="18.4" y="0.8" width="10.8" height="10.8" rx="3.4" fill="currentColor" opacity=".68"/>
+    </symbol>
+  </svg>
+
   <!-- ── HEADER ── -->
   <header>
     <div class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg class="logo-symbol" viewBox="0 0 30 30"><use href="#sbk-mark"/></svg>
+      </span>
       <div class="logo-brand">
         <span class="logo-text">SBK</span>
         <span class="logo-subtitle">Intranet</span>
